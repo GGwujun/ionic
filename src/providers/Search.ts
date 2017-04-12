@@ -117,4 +117,12 @@ export class Search {
         this.list.initData($this, null);
     }
 
+    sort($this,event,name){
+        $this.conf.data.sort=name;
+        this.addActive(event);
+        this.Alerthide($this);
+        this.list.initData($this, null);
+    
+    }
+
 }
