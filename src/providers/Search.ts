@@ -50,9 +50,6 @@ export class Search {
                     sub_cat:item.sub_cat
                 })
             })
-
-            console.log($this.conf.filt)
-            console.log($this.conf.searchs)
         })
     }
 
