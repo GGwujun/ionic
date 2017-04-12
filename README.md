@@ -1,7 +1,7 @@
-Ionic 2 App Base
+csdu Ionic2App Base
 =====================
 
-This is the base template for Ionic 2 starter apps.
+This is the base template for csdu Ionic2App.
 
 ## Using this project
 
