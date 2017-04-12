@@ -29,7 +29,7 @@ export class HomePage {
       page: 1,
       cou: 20,
       sort: '',
-      ord: '',
+      ord: '1',
       ent: '1',
       defa: [{ value: 4, type: '1', name: 'type' }],
       flt: []

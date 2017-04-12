@@ -11,7 +11,7 @@
   </ul>
 
   <ul class="filtcont" [style.display]="searchs?'block':'none'">
-    <ion-list *ngFor="let item of conf.filt" (click)="this.search.addActive($event)">
+    <ion-list *ngFor="let item of conf.filt" (click)="this.search.sort(this,$event,item.class_name)">
       <li class="li">
         <ion-icon name="checkmark"></ion-icon>{{item.name}}
       </li>

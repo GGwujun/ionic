@@ -74,6 +74,12 @@ export class Search {
         this.list.initData($this, null);
     }
 
+    sort($this,event,name){
+        this.addActive(event);
+        this.Alerthide($this);
+        // this.list.initData($this, null);
+    }
+
     initSearch($this) {
         console.log($this.conf.currentsearch)
         $this.conf.currentsearch.forEach(function(item){
