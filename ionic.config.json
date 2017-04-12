@@ -1,0 +1,12 @@
+{
+  "name": "ionic2-app-base",
+  "app_id": "",
+  "typescript": true,
+  "proxies": [
+    {
+      "path": "/api",
+      "proxyUrl": "https://www.csdu.net"
+    }
+  ],
+  "v2": true
+}

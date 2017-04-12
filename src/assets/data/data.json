@@ -1,0 +1,24 @@
+{
+  "data": [
+    {
+      "value": "篮球",
+      "isChecked": true
+    },
+    {
+      "value": "排球",
+      "isChecked": true
+    },
+    {
+      "value": "足球",
+      "isChecked": true
+    },
+    {
+      "value": "乒乓球",
+      "isChecked": true
+    },
+    {
+      "value": "橄榄球",
+      "isChecked": true
+    }
+  ]
+}
