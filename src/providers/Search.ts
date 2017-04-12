@@ -1,13 +1,60 @@
 import { Injectable } from '@angular/core';
 
 import { List } from '../providers/List';
+import { Net } from '../providers/Net';
 
 
 @Injectable()
 
 export class Search {
 
-    constructor(public list: List) { }
+    constructor(public list: List, public net: Net) { }
+
+    initSearch($this, url) {
+        this.net.ajax('get', { url: url }, function (data) {
+ 
+            data.filt.forEach(function (item,index) {
+                $this.conf.filt.push({
+                    id: index,
+                    name: item.name,
+                    class_name: item.class_name
+                })
+            })
+
+            data.list.forEach(function(item,index){
+                $this.conf.searchs.push({
+                    class_name:item.class_name,
+                    id:item.id,
+                    ismore:item.ismore,
+                    name:item.name,
+                    sub_cat:item.sub_cat
+                })
+            })
+
+            data.svr.forEach(function(item,index){
+                $this.conf.searchs.push({
+                    class_name:item.class_name,
+                    id:item.id,
+                    ismore:item.ismore,
+                    name:item.name,
+                    sub_cat:item.sub_cat
+                })
+            })
+
+            data.url.forEach(function(item,index){
+                $this.conf.searchs.push({
+                    class_name:item.class_name,
+                    id:item.id,
+                    ismore:item.ismore,
+                    name:item.name,
+                    sub_cat:item.sub_cat
+                })
+            })
+
+            console.log($this.conf.filt)
+            console.log($this.conf.searchs)
+        })
+    }
 
     searchSwitch($this, name) {
         $this.Alert = true;
@@ -18,7 +65,6 @@ export class Search {
             $this.filt = true;
             $this.searchs = false;
         }
-        //this.initSearch($this);
     }
 
     Alerthide($this) {
@@ -72,14 +118,6 @@ export class Search {
         })
         this.Alerthide($this);
         this.list.initData($this, null);
-    }
-
-    initSearch($this) {
-        console.log($this.conf.currentsearch)
-        $this.conf.currentsearch.forEach(function(item){
-            let ids=item.class_name+item.value;
-            document.getElementById(ids).className='active';
-        })
     }
 
 }

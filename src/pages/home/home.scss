@@ -1,10 +1,11 @@
 page-home{
     .searchs{
         position: fixed;
-        top: 50px;
+        top: 51px;
         left:0;
         width: 100%;
         z-index: 999;
+        bottom: 105px;
 
         ul.search{
             list-style: none;
@@ -93,6 +94,11 @@ page-home{
             background: #fff;
             border-top: 1px solid #dedede;
             padding-bottom: 15px;
+            overflow: scroll;
+            height: 100%;
+            position: absolute;
+            bottom: 0px;
+            top: 49px;
 
             .li{
                 float: none;
