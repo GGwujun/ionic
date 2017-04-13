@@ -12,17 +12,12 @@ export class HomePage {
   constructor(public list: List, public search: Search) { }
 
   ionViewDidLoad() {
-    this.list.initData(this, null);
-    this.search.initSearch(this,'data/search/arrsefej.json')
+    this.list.initData(this.conf, null);
+    // this.list.initData(this.conf1, null);
+    this.search.initSearch(this.conf,'data/search/arrsefej.json')
   }
 
-
-  items: any = [];
   conf = {
-    endtext: '',
-    loadtext: 'Loading more data...',
-    infiniteIcon: 'bubbles',
-    nullData: true,
     data: {
       cmd: 'config',
       flag: 'module',
@@ -33,18 +28,39 @@ export class HomePage {
       ord: '1',
       ent: '1',
       defa: [{ value: 4, type: '1', name: 'type' }],
-      flt: []
+      filter: []
     },
+    view : {
+      endtext: '',
+      loadtext: 'Loading more data...',
+      infiniteIcon: 'bubbles',
+      nullData: true,
+      Alert : false,
+      search :false,
+      filt : false
+    },   
+    items:[],
     searchs: [],
     filt: [],
-    currentsearch: []
+    currentsearch: []    
   }
 
-
-
-  Alert = false;
-  searchs = false;
-  filt = false;
-
-  currentIndex
+  conf1 = {
+      data: {
+        cmd: 'config',
+        flag: 'module',
+        _memb: '1',
+        page: 1,
+        cou: 20,
+        sort: '',
+        ord: '1',
+        ent: '1',
+        defa: [{ value: 4, type: '1', name: 'type' }],
+        filter: []
+      },
+      view : {
+        nullData: true
+      },   
+      items:[]        
+    }
 }

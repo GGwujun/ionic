@@ -10,11 +10,11 @@ export class Search {
 
     constructor(public list: List, public net: Net) { }
 
-    initSearch($this, url) {
+    initSearch(conf, url) {
         this.net.ajax('get', { url: url }, function (data) {
  
             data.filt.forEach(function (item,index) {
-                $this.conf.filt.push({
+                conf.filt.push({
                     id: index,
                     name: item.name,
                     class_name: item.class_name
@@ -22,7 +22,7 @@ export class Search {
             })
 
             data.list.forEach(function(item,index){
-                $this.conf.searchs.push({
+                conf.searchs.push({
                     class_name:item.class_name,
                     id:item.id,
                     ismore:item.ismore,
@@ -32,7 +32,7 @@ export class Search {
             })
 
             data.svr.forEach(function(item,index){
-                $this.conf.searchs.push({
+                conf.searchs.push({
                     class_name:item.class_name,
                     id:item.id,
                     ismore:item.ismore,
@@ -42,7 +42,7 @@ export class Search {
             })
 
             data.url.forEach(function(item,index){
-                $this.conf.searchs.push({
+                conf.searchs.push({
                     class_name:item.class_name,
                     id:item.id,
                     ismore:item.ismore,
@@ -53,21 +53,21 @@ export class Search {
         })
     }
 
-    searchSwitch($this, name) {
-        $this.Alert = true;
+    searchSwitch(conf, name) {
+        conf.view.Alert = true;
         if (name == 'searchs') {
-            $this.searchs = true;
-            $this.filt = false;
+            conf.view.search = true;
+            conf.view.filt = false;
         } else if (name == 'filt') {
-            $this.filt = true;
-            $this.searchs = false;
+            conf.view.filt = true;
+            conf.view.search = false;
         }
     }
 
-    Alerthide($this) {
-        $this.Alert = false;
-        $this.searchs = false;
-        $this.filt = false;
+    Alerthide(conf) {
+        conf.view.Alert = false;
+        conf.view.search = false;
+        conf.view.filt = false;
     }
 
 
@@ -80,19 +80,19 @@ export class Search {
         })
     }
 
-    isActives($this, item, i, event) {
+    isActives(conf, item, i, event) {
         this.addActive(event);
-        let ret = $this.conf.currentsearch.find(function (data) {
+        let ret = conf.currentsearch.find(function (data) {
             return data.class_name == item.class_name;
         })
 
         if (!ret) {
-            $this.conf.currentsearch.push({
+            conf.currentsearch.push({
                 class_name: item.class_name,
                 value: i.id
             })
         } else {
-            $this.conf.currentsearch.forEach(function (item) {
+            conf.currentsearch.forEach(function (item) {
                 if (item.class_name == ret.class_name)
                     item.value = i.id
             })
@@ -109,19 +109,22 @@ export class Search {
         }
     }
 
-    confirm($this) {
-        $this.conf.currentsearch.forEach(function (item) {
-            $this.conf.data.flt.push({ value: item.value, type: '1', 'name': item.class_name });
+    confirm(conf) {
+        conf.refresh=true;
+        conf.data.filter=[];
+        conf.currentsearch.forEach(function (item) {
+            conf.data.filter.push({ value: item.value, type: '1', 'name': item.class_name });
         })
-        this.Alerthide($this);
-        this.list.initData($this, null);
+        this.Alerthide(conf);
+        this.list.initData(conf, null);
     }
 
-    sort($this,event,name){
-        $this.conf.data.sort=name;
+    sort(conf,event,name){
+        conf.refresh=true;
+        conf.data.sort=name;
         this.addActive(event);
-        this.Alerthide($this);
-        this.list.initData($this, null);
+        this.Alerthide(conf);
+        this.list.initData(conf, null);
     
     }
 

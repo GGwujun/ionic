@@ -56,11 +56,10 @@ export class Net {
 
         } else if (type == 'list') {
             let bodydata = '';
-            let bodys = body;
             let flt = '<Filter xmlns="filter"><Row>';
-            if (bodys.flt) {
+            if (body.filter) {
 
-                bodys.flt.forEach(function (i) {
+                body.filter.forEach(function (i) {
                     let t = i.type;
                     let v = i.value.toString();
                     let name = i.name;
@@ -68,8 +67,8 @@ export class Net {
                 })
             }
 
-            if (bodys.defa) {
-                bodys.defa.forEach(function (i) {
+            if (body.defa) {
+                body.defa.forEach(function (i) {
                     let t = i.type;
                     let v = i.value.toString();
                     let name = i.name;
@@ -81,20 +80,17 @@ export class Net {
 
             if (flt == '<Filter xmlns="filter"><Row></Row></Filter>')
                 flt = '';
-
-            body.flt=flt;
-
-
-            for (var key in bodys) {
-                if (key != 'cmd') {
+            
+            body.flt = flt;
+            for (var key in body) {
+                if (key != 'cmd' && key !='filter' && key != 'defa') {
                     if (bodydata)
-                        bodydata += '&' + (key == 'flag' ? '_flag' : key) + '=' + bodys[key];
+                        bodydata += '&' + (key == 'flag' ? '_flag' : key) + '=' + body[key];
                     else
-                        bodydata += (key == 'flag' ? '_flag' : key) + '=' + bodys[key];
+                        bodydata += (key == 'flag' ? '_flag' : key) + '=' + body[key];
                 }
             }
 
-            body.flt = [];
             bodydata += '&pf=1000&cmd=list';
             let headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' });
             let options = new RequestOptions({
