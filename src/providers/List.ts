@@ -8,6 +8,7 @@ import { Net } from '../providers/Net';
 export class List {
 
     constructor(public net: Net) { }
+    
 
     initData(conf, callback) {
         this.net.ajax('list', conf.data, function (data) {

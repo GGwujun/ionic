@@ -118,6 +118,7 @@ export class Search {
         this.Alerthide(conf);
         this.list.initData(conf, null);
     }
+    
 
     sort(conf,event,name){
         conf.refresh=true;
